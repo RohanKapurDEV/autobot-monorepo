@@ -1,5 +1,25 @@
 {
-  "devDependencies": {
-    "typescript": "^4.2.4"
+  "name": "autobotmoney",
+  "version": "1.0.0",
+  "description": "autobot.money allows users to store their SOL in an open-source custodial web wallet service that they can either interface via a website or bt using the @autobotmoney twitter bot. This can, and most likely will be eventually extended to Discord and Telegram but since I'm crunched for time on the hackathon, I'm restricting this to Twitter for the moment.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RohanKapurDEV/soltipbot-monorepo.git"
+  },
+  "author": "Rohan Kapur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RohanKapurDEV/soltipbot-monorepo/issues"
+  },
+  "homepage": "https://github.com/RohanKapurDEV/soltipbot-monorepo#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.8.0"
   }
 }
