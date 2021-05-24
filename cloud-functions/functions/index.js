@@ -12,7 +12,7 @@ exports.balance = functions.https.onRequest(async (req, res) => {
   let { userType, userId, denomination } = req.body;
   let userData = await utils.fetchUserObject(userType, userId);
   let pubkey = userData.pubkey;
-  let balance = utils.getBalanceForAddress(pubkey, denomination);
+  let balance = await utils.getBalanceForAddress(pubkey, denomination);
 
   res.send({
     balance: balance,
@@ -30,29 +30,27 @@ exports.pubkey = functions.https.onRequest(async (req, res) => {
   });
 });
 
-exports.userobject = functions.https.onRequest(async (req, res) => {
-  let { userType, userId } = req.body;
-  let data = await utils.fetchUserObject(userType, userId);
-
-  res.send(data);
-});
-
 exports.tip = functions.https.onRequest(async (req, res) => {
-  let { userType, userId, receipientId, amount, denomination } = req.body;
+  let { userType, userId, recipientId, amount, denomination } = req.body;
   let accountsArray = [];
 
-  let userPubkey = await utils.getUserPubkeyFromId(userType, userId);
-  let recPubkey = await utils.getUserPubkeyFromId(userType, receipientId);
+  let userObj = await utils.fetchUserObject(userType, userId);
+  let userPubkey = userObj.pubkey;
+  let recObj = await utils.fetchUserObject(userType, recipientId);
+  let recPubkey = recObj.pubkey;
 
-  accountsArray.push(await utils.returnAccountFromId(userType, userId));
+  let signerAcct = await utils.returnAccountFromId(userType, userId);
+  accountsArray.push(signerAcct);
 
-  const toSend = 0;
+  let toSend = 0;
 
   if (denomination == "lamports") {
     toSend = amount;
   } else {
-    toSend = amount / 1000000000;
+    toSend = amount * 1000000000;
   }
+
+  console.log(toSend);
 
   await utils
     .transferLamports(toSend, userPubkey, recPubkey, accountsArray)
@@ -69,23 +67,27 @@ exports.tip = functions.https.onRequest(async (req, res) => {
     });
 });
 
+// exports.tipToken = functions.https.onRequest(async (req, res) => {});
+
 exports.transfer = functions.https.onRequest(async (req, res) => {
-  let { userType, userId, receipientPubkey, amount, denomination } = req.body;
+  let { userType, userId, recipientPubkey, amount, denomination } = req.body;
   let accountsArray = [];
 
-  let userPubkey = await utils.getUserPubkeyFromId(userType, userId);
-  accountsArray.push(await utils.returnAccountFromId(userType, userId));
+  let userObject = await utils.fetchUserObject(userType, userId);
+  let userPubkey = userObject.pubkey;
+  let signerAcct = await utils.returnAccountFromId(userType, userId);
+  accountsArray.push(signerAcct);
 
-  const toSend = 0;
+  let toSend = 0;
 
   if (denomination == "lamports") {
     toSend = amount;
   } else {
-    toSend = amount / 1000000000;
+    toSend = amount * 1000000000;
   }
 
   await utils
-    .transferLamports(toSend, userPubkey, receipientPubkey, accountsArray)
+    .transferLamports(toSend, userPubkey, recipientPubkey, accountsArray)
     .then((_) =>
       res.send({
         status: true,
@@ -99,6 +101,8 @@ exports.transfer = functions.https.onRequest(async (req, res) => {
     });
 });
 
+// exports.transferToken = functions.https.onRequest(async (req, res) => {});
+
 exports.donate = functions.https.onRequest(async (req, res) => {
   let { userType, userId, amount, denomination } = req.body;
   let accountsArray = [];
@@ -108,7 +112,7 @@ exports.donate = functions.https.onRequest(async (req, res) => {
 
   accountsArray.push(await utils.returnAccountFromId(userType, userId));
 
-  const toSend = 0;
+  let toSend = 0;
 
   if (denomination == "lamports") {
     toSend = amount;

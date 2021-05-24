@@ -1,7 +1,6 @@
 const admin = require("./admin");
 const solanaWeb3 = require("@solana/web3.js");
 const { v4 } = require("uuid");
-const { Transaction } = require("@google-cloud/firestore");
 
 const db = admin.db;
 const rpc_mainnet = "https://solana-api.projectserum.com";
@@ -49,7 +48,7 @@ const fetchUserObject = async (userType, userId) => {
  * @returns {number}
  */
 const getBalanceForAddress = async (address, denomination) => {
-  let rpc = new solanaWeb3.Connection(rpc_mainnet);
+  let rpc = new solanaWeb3.Connection(rpc_devnet);
   if (denomination == "SOL") {
     return (await rpc.getBalance(new solanaWeb3.PublicKey(address))) / solanaWeb3.LAMPORTS_PER_SOL;
   } else if (denomination == "lamports" || denomination == "lamps") {
@@ -58,7 +57,7 @@ const getBalanceForAddress = async (address, denomination) => {
 };
 
 const transferLamports = async (lamports, senderPubkey, recipientPubkey, accountsArray) => {
-  let rpc = new solanaWeb3.Connection(rpc_mainnet);
+  let rpc = new solanaWeb3.Connection(rpc_devnet);
   let sendPubkey = new solanaWeb3.PublicKey(senderPubkey);
   let receivePubkey = new solanaWeb3.PublicKey(recipientPubkey);
   let transferIx = solanaWeb3.SystemProgram.transfer({
@@ -77,22 +76,24 @@ const transferLamports = async (lamports, senderPubkey, recipientPubkey, account
 const returnAccountFromId = async (accountType, accountId) => {
   if (accountType == 0) {
     // Discord
-    let docref = await db.collection("users").where("discordId", "==", accountId).get();
+    const docref = await db.collection("users").where("discordId", "==", accountId).get();
+    console.log("disc check");
 
     if (docref.empty) {
       return false;
     } else {
-      let privatekey = docref.docs[0].data().privateKey.data;
+      let privatekey = docref.docs[0].data().privateKey.toJSON().data;
       return solanaWeb3.Keypair.fromSecretKey(Uint8Array.from(privatekey));
     }
   } else {
     // Telegram
     let docref = await db.collection("users").where("telegramId", "==", accountId).get();
+    console.log("tele check");
 
     if (docref.empty) {
       return false;
     } else {
-      let privatekey = docref.docs[0].data().privateKey.data;
+      let privatekey = docref.docs[0].data().privateKey.toJSON().data;
       return solanaWeb3.Keypair.fromSecretKey(Uint8Array.from(privatekey));
     }
   }
