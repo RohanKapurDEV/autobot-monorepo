@@ -14,6 +14,8 @@ const axios = require("axios").default;
  * !donate <amount> <asset>               -> Donate <amount> of <asset> to help me keep servers alive
  *
  * NOTE: <asset> can be tokens, sol, or lamports
+ * TODO: add token support
+ * TODO: add NFT support
  */
 
 const client = new Discord.Client();
