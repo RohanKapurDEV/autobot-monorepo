@@ -67,10 +67,7 @@ const transferLamports = async (lamports, senderPubkey, recipientPubkey, account
   });
 
   let tx = new solanaWeb3.Transaction().add(transferIx);
-  await rpc
-    .sendTransaction(tx, accountsArray, { skipPreflight: false, preflightCommitment: "finalized" })
-    .then((res) => res)
-    .catch((err) => console.error(err));
+  await rpc.sendTransaction(tx, accountsArray, { skipPreflight: false, preflightCommitment: "finalized" });
 };
 
 const returnAccountFromId = async (accountType, accountId) => {

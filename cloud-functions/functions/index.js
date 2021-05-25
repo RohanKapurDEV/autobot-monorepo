@@ -54,11 +54,13 @@ exports.tip = functions.https.onRequest(async (req, res) => {
 
   await utils
     .transferLamports(toSend, userPubkey, recPubkey, accountsArray)
-    .then((_) =>
-      res.send({
-        status: true,
-      })
-    )
+    .then((response) => {
+      if (response == undefined) {
+        res.send({
+          status: true,
+        });
+      }
+    })
     .catch((err) => {
       res.send({
         status: false,
@@ -88,11 +90,13 @@ exports.transfer = functions.https.onRequest(async (req, res) => {
 
   await utils
     .transferLamports(toSend, userPubkey, recipientPubkey, accountsArray)
-    .then((_) =>
-      res.send({
-        status: true,
-      })
-    )
+    .then((response) => {
+      if (response == undefined) {
+        res.send({
+          status: true,
+        });
+      }
+    })
     .catch((err) => {
       res.send({
         status: false,
@@ -122,11 +126,13 @@ exports.donate = functions.https.onRequest(async (req, res) => {
 
   await utils
     .transferLamports(toSend, userPubkey, recPubkey, accountsArray)
-    .then((_) =>
-      res.send({
-        status: true,
-      })
-    )
+    .then((_) => {
+      if (res == undefined) {
+        res.send({
+          status: true,
+        });
+      }
+    })
     .catch((err) => {
       res.send({
         status: false,
