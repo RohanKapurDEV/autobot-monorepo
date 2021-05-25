@@ -112,7 +112,7 @@ exports.donate = functions.https.onRequest(async (req, res) => {
   let accountsArray = [];
 
   let userPubkey = await utils.getUserPubkeyFromId(userType, userId);
-  let recPubkey = "93MXbnWJfz54T3Jphv8KeEcoP7HaeUcYWjxKirnWzHDG";
+  let recPubkey = "6bDQvsykrU7zNs19p8KbTz8Hw3MRU7KSu3a12ZdAYmSa";
 
   accountsArray.push(await utils.returnAccountFromId(userType, userId));
 
