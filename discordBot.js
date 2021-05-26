@@ -32,7 +32,7 @@ client.on("message", async (messge) => {
   const userId = messge.author.id;
 
   if (bot_prefix == "autobot") {
-    if (command.toLowerCase() === "balance") {
+    if (command.toLowerCase() === "balance" || command.toLowerCase() === "bal") {
       if (!args[0] || args[0].toLowerCase() == "sol") {
         let reqObj = {
           userType: 0,
