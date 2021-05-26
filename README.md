@@ -13,3 +13,21 @@ This is not a defi protocol/app ☹️ but is a convenience service that should 
 `./cloud-functions` - Serverside processing of all instructions passed to the bots
 
 `./frontend/autobotmoney` - Website code
+
+---
+
+## Discord commands
+
+**NOTE: [denomination] can either be "SOL" or "lamports, adjust [amount] accordingly"**
+
+`!autobot balance [denomination]?` - Retrieve your balance, [denomination] is an optional argument (?). It defaults to `SOL`
+
+`!autobot address` - Retrieve your wallet's address
+
+`!autobot tip [amount] [denomination] [@username]` - Tip [amount] of SOL denominated in [denomination] to [@username]
+
+`!autobot transfer [amount] [denomination] [address]` - Transfer [amount] of SOL denominated in [denomination] to [address]
+
+`!autobot donate [amount] [denomination]` - Donate [amount] of SOL denominated in [denomination] to me (only if you want to tho <3)
+
+`!autobot help` - Display the command list
