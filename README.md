@@ -1,3 +1,5 @@
+![alt text](./frontend/autobotmoney/public/images/gradient.png "Logo Title Text 1")
+
 # autobot.money - A Solana wallet service for Discord and Telegram
 
 autobot.money allows users to store their SOL in an open-source custodial web wallet service that they can interface with either via Discord or Telegram.
