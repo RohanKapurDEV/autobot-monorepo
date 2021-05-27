@@ -57,6 +57,11 @@ client.on("message", async (messge) => {
         // handle conditions for tokens
       }
     } else if (command.toLowerCase() === "tip") {
+      if (!messge.mentions.users.first()) {
+        messge.reply("You did not specify a valid user to tip");
+        return;
+      }
+
       let recipientDiscordId = messge.mentions.users.first().id;
 
       console.log(recipientDiscordId, args[0], args[1]);
@@ -86,6 +91,10 @@ client.on("message", async (messge) => {
           .catch((err) => console.log(err));
       }
     } else if (command.toLowerCase() === "transfer") {
+      if (!args[2]) {
+        messge.reply("You did not specify a valid address to transfer to");
+        return;
+      }
       let recipientaddr = args[2];
 
       let reqObj = {
