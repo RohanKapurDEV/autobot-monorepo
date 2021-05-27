@@ -36,7 +36,8 @@ function MyApp({ Component, pageProps }) {
         <Link href="/discordguide">
           <FooterCell>🤔 Discord Guide</FooterCell>
         </Link>
-        <FooterCell href="">🤓 Github</FooterCell>
+        <FooterCell href="https://github.com/RohanKapurDEV/autobot-monorepo">🤓 Github</FooterCell>
+        <div style={{ width: "5px" }}></div>
       </Footer>
     </>
   );

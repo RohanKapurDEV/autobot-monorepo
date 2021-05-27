@@ -75,6 +75,31 @@ export default function index() {
         <p>
           <code>!autobot address</code> - Displays your wallet address
         </p>
+        <p>
+          <code>!autobot balance [denomination]?</code> - Displays your SOL balance in [denomination]
+        </p>
+        <p>
+          <code>!autobot tip [amount] [denomination] [@user] </code> - Tip [amount] of SOL in [denomination] to [@user]
+        </p>
+        <p>
+          <code>!autobot transfer [amount] [denomination] [address] </code> - Transfer [amount] of SOL in [denomination]
+          to [address]
+        </p>
+        <p>
+          <code>!autobot donate [amount] [denomination] </code> - Donate [amount] of SOL in [denomination] to feed me
+        </p>
+        <p>
+          <code>!autobot help </code> - Display help text
+        </p>
+
+        <h2>Notes</h2>
+
+        <p>
+          <code>[denomination]</code> can either be "SOL" or "lamports", <code>[amount]</code> would be adjusted
+          accordingly of course
+        </p>
+
+        <p>All wallets run on mainnet-beta</p>
       </InfoBox>
 
       {/* <Link href="/">
