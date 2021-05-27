@@ -63,15 +63,25 @@ const Spacer = styled.div`
   }
 `;
 
+const ImageContainer = styled.div`
+  height: 60px;
+  width: 60px;
+
+  @media (max-width: 700px) {
+    height: 40px;
+    width: 40px;
+  }
+`;
+
 export default function Home() {
   return (
     <>
       <Background>
         <Column>
           <Row>
-            <div>
-              <Image src="/images/gradient.png" height="60px" width="60px" layout="intrinsic" priority="true"></Image>
-            </div>
+            <ImageContainer>
+              <Image src="/images/gradient.png" height={60} width={60} layout="responsive" priority="true"></Image>
+            </ImageContainer>
             <Spacer></Spacer>
             <Title>autobot.money</Title>
           </Row>
