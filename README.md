@@ -4,7 +4,7 @@
 
 autobot.money allows users to store their SOL in an open-source custodial web wallet service that they can interface with either via Discord or Telegram.
 
-This is not a defi protocol/app ☹️ but is a convenience service that should (in theory) make the interactions between people in Discord or Telegram chats more fun. Everyone loves a community that isn't afraid to share wealth with each other and that's the kind of community Solana should be building anyway.
+This is not a defi protocol/app ☹️ but is a convenience service that should (in theory) make the interactions between people in Discord or Telegram chats more fun.
 
 ## Monorepo structure
 
