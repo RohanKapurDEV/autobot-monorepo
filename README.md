@@ -6,7 +6,7 @@ autobot.money allows users to store their SOL in an open-source custodial web wa
 
 This is not a defi protocol/app ☹️ but is a convenience service that should (in theory) make the interactions between people in Discord or Telegram chats more fun. Everyone loves a community that isn't afraid to share wealth with each other and that's the kind of community Solana should be building anyway.
 
-## A brief overview of the service
+## Monorepo structure
 
 `./discordBot.ts` - Main script that listens for instructions on Discord servers
 
