@@ -100,6 +100,8 @@ export default function index() {
         </p>
 
         <p>All wallets run on mainnet-beta</p>
+
+        <div style={{ height: "4rem" }}></div>
       </InfoBox>
 
       {/* <Link href="/">

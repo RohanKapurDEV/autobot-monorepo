@@ -32,7 +32,9 @@ function MyApp({ Component, pageProps }) {
       <Footer>
         <div style={{ width: "5px" }}></div>
         <FooterCell href="https://twitter.com/0xrohan">By @0xrohan</FooterCell>
-        <FooterCell href="">🤖 Invite to Discord server</FooterCell>
+        <FooterCell href="https://discord.com/api/oauth2/authorize?client_id=845273238778937374&permissions=75776&scope=bot">
+          🤖 Invite to Discord server
+        </FooterCell>
         <Link href="/discordguide">
           <FooterCell>🤔 Discord Guide</FooterCell>
         </Link>
